@@ -1,8 +1,8 @@
 require("dotenv").config();
-var keys = require("./keys.js");
-
-
-var spotify = new Spotify(keys.spotify);
+let keys = require("./keys.js");
+let operator = process.argv[2]
+let funcer = process.argv[3]
+let spotify = new Spotify(keys.spotify);
 
 // Liri comands
 // `concert-this`
@@ -12,3 +12,18 @@ var spotify = new Spotify(keys.spotify);
 // * `movie-this`
 
 // * `do-what-it-says`
+
+function spotify (){
+
+}
+
+function bIt (){
+
+}
+function movie(){
+
+}
+
+function doIt(){
+
+}
