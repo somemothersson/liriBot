@@ -29,11 +29,29 @@ function bIt (){
 
     axios.get(`https://rest.bandsintown.com/artists/${funcer}/events?app_id=codingbootcamp`).then(
   function(response) {
-      for (i = 0; i <response.length; i++){
-        console.log(response[i].datetime)
+      
+        console.log(`
+        *******************
+        Concert Listings for ${funcer}
+        `)
+      for (i = 0; i <response.data.length; i++){
+        console.log(response.data[i].datetime)
+        let venue = response.data[i].venue.name
+        let city = response.data[i].venue.city
+        let state = response.data[i].venue.state
+        let dateTime = response.data[i].datetime
+        console.log(`
+        ${dateTime}
+        ${venue}
+        ${city}, ${state}
+
+        
+        
+        `)
 
       }
-    console.log(response[0].datetime);
+
+    
     // console.log(response);
 
     // * Name of the venue
