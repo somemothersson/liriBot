@@ -1,7 +1,10 @@
 require("dotenv").config();
+let Spotify = require('node-spotify-api');
+let fs = require("fs");
+let axios = require("axios");
 let keys = require("./keys.js");
 let operator = process.argv[2]
-let funcer = process.argv[3]
+let funcer = process.argv.slice(3).join(" ");
 let spotify = new Spotify(keys.spotify);
 
 
@@ -10,7 +13,7 @@ switch (operator) {
         bIt()
         break;
     case "spotify-this-song":
-        spotify()
+        spotifySearch()
         break;
     case "movie-this":
         movie()
@@ -24,15 +27,33 @@ switch (operator) {
 }
 function bIt (){
 
-}
-function spotify (){
+    axios.get(`https://rest.bandsintown.com/artists/${funcer}/events?app_id=codingbootcamp`).then(
+  function(response) {
+    console.log(response);
+
+    // * Name of the venue
+
+    // * Venue location
+
+    // * Date of the Event (use moment to format this as "MM/DD/YYYY")
+  }
+);
 
 }
 
-function movie(){
+// function spotifySearch (){
 
-}
+// }
 
-function doIt(){
+// function movie(){
+//     axios.get("http://www.omdbapi.com/?t=remember+the+titans&y=&plot=short&apikey=trilogy").then(
+//         function(response) {
+//           console.log("The movie's rating is: " + response.data.imdbRating);
+//         }
+//       );
 
-}
+// }
+
+// function doIt(){
+
+// }
