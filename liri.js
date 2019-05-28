@@ -7,7 +7,7 @@ let operator = process.argv[2]
 let funker = process.argv.slice(3).join(" ");
 let spotify = new Spotify(keys.spotify);
 
-
+console.log(`${operator} --- ${funker}`)
 switch (operator) {
     case "concert-this":
         bIt()
@@ -67,14 +67,32 @@ function spotifySearch (){
 
 }
 
-// function movie(){
-//     axios.get("http://www.omdbapi.com/?t=remember+the+titans&y=&plot=short&apikey=trilogy").then(
-//         function(response) {
-//           console.log("The movie's rating is: " + response.data.imdbRating);
-//         }
-//       );
+function movie(){
+  if (funker = ""){
+    console.log(`
+    If you haven't watched "Mr. Nobody," then you should: <http://www.imdb.com/title/tt0485947/>
 
-// }
+    It's on Netflix!`)
+  }else{
+    axios.get(`http://www.omdbapi.com/?t=${funker}&y=&plot=short&apikey=trilogy`).then(
+        function(response) {
+          // console.log(response.data);
+
+
+        console.log(`
+        Title: ${response.data.Title}
+        Year: ${response.data.Year}
+        IMDB Rating: ${response.data.imdbRating}
+        Rotten Tomatoes Rating: ${response.data.Ratings[1].value}
+        Country: ${response.data.Country}
+        Language: ${response.data.Language}
+        Plot: ${response.data.Plot}
+        Actors: ${response.data.Actors}`)
+        }
+      );
+
+}
+}
 
 // function doIt(){
 
