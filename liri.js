@@ -10,24 +10,24 @@ let spotify = new Spotify(keys.spotify);
 console.log(`${operator} --- ${funker}`)
 switch (operator) {
     case "concert-this":
-        bIt()
+        bIt(funker)
         break;
     case "spotify-this-song":
-        spotifySearch()
+        spotifySearch(funker)
         break;
     case "movie-this":
-        movie()
+        movie(funker)
         break;
     case "do-what-it-says":
-        doIt()
+        doIt(funker)
         break;
   
 
 
 }
-function bIt (){
+function bIt (band){
 
-    axios.get(`https://rest.bandsintown.com/artists/${funker}/events?app_id=codingbootcamp`).then(
+    axios.get(`https://rest.bandsintown.com/artists/${band}/events?app_id=codingbootcamp`).then(
   function(response) {
       
         console.log(`
@@ -51,8 +51,8 @@ function bIt (){
 
 }
 
-function spotifySearch (){
-  spotify.search({ type: 'track', query: funker }, function(err, data) {
+function spotifySearch (track){
+  spotify.search({ type: 'track', query: track }, function(err, data) {
     if (err) {
       return console.log('Error occurred: ' + err);
     }
@@ -67,14 +67,14 @@ function spotifySearch (){
 
 }
 
-function movie(){
-  if (funker = ""){
+function movie(movie){
+  if (movie = ""){
     console.log(`
     If you haven't watched "Mr. Nobody," then you should: <http://www.imdb.com/title/tt0485947/>
 
     It's on Netflix!`)
   }else{
-    axios.get(`http://www.omdbapi.com/?t=${funker}&y=&plot=short&apikey=trilogy`).then(
+    axios.get(`http://www.omdbapi.com/?t=${movie}&y=&plot=short&apikey=trilogy`).then(
         function(response) {
           // console.log(response.data);
         console.log(`
@@ -101,7 +101,9 @@ function doIt(){
     }
   
     // We will then print the contents of data
-    console.log(data);
+    // console.log(data.funker);
+
+    spotifySearch(data)
   
     // Then split it by commas (to make it more readable)
     // var dataArr = data.split(" ");
