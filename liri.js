@@ -4,26 +4,23 @@ let fs = require("fs");
 let axios = require("axios");
 let keys = require("./keys.js");
 let operator = process.argv[2]
-let funker = process.argv.slice(3).join(" ");
+let search = process.argv.slice(3).join(" ");
 let spotify = new Spotify(keys.spotify);
 
-console.log(`${operator} --- ${funker}`)
 switch (operator) {
     case "concert-this":
-        bIt(funker)
+        bIt(search)
         break;
     case "spotify-this-song":
-        spotifySearch(funker)
+        spotifySearch(search)
         break;
     case "movie-this":
-        movie(funker)
+        movieSearch(search)
         break;
     case "do-what-it-says":
-        doIt(funker)
+        doIt(search)
         break;
   
-
-
 }
 function bIt (band){
 
@@ -32,7 +29,7 @@ function bIt (band){
       
         console.log(`
         *******************
-        Concert Listings for ${funker}
+        Concert Listings for ${search}
         `)
       for (i = 0; i <response.data.length; i++){
         let venue = response.data[i].venue.name
@@ -56,10 +53,11 @@ function spotifySearch (track){
     if (err) {
       return console.log('Error occurred: ' + err);
     }
+    // console.log(data)
   console.log(`
   Artist(s): ${data.tracks.items[0].album.artists[0].name}
-  Song Name: ${data.tracks.items[0].album.name}
-  Preview Link: ${data.tracks.items[0].album.external_urls.spotify}
+  Song Name: ${data.tracks.items[0].name}
+  Preview Link: ${data.tracks.items[0].external_urls.spotify}
   Album Title: ${data.tracks.items[0].name}
   `);
 
@@ -67,8 +65,8 @@ function spotifySearch (track){
 
 }
 
-function movie(movie){
-  if (movie = ""){
+function movieSearch(movie){
+  if (!movie){
     console.log(`
     If you haven't watched "Mr. Nobody," then you should: <http://www.imdb.com/title/tt0485947/>
 
@@ -100,16 +98,7 @@ function doIt(){
       return console.log(error);
     }
   
-    // We will then print the contents of data
-    // console.log(data.funker);
-
     spotifySearch(data)
-  
-    // Then split it by commas (to make it more readable)
-    // var dataArr = data.split(" ");
-  
-    // We will then re-display the content as an array for later use.
-    // console.log(dataArr);
   
   });
 
