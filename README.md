@@ -1,6 +1,5 @@
 # liriBot
 
-# LIRI Bot
 
 ### Overview
 

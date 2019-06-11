@@ -34,7 +34,7 @@ function bIt (band){
       for (i = 0; i <response.data.length; i++){
         let venue = response.data[i].venue.name
         let city = response.data[i].venue.city
-        let state = response.data[i].venue.state
+        let state = response.data[i].venue.region
         let dateTime = response.data[i].datetime
         console.log(`
         ${dateTime}
